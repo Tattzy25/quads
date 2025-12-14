@@ -1,6 +1,12 @@
 import Link from "next/link";
 import { ModeToggle } from "./ModeToggle";
-import { useTheme } from "next-themes";
+import { Slot } from "@radix-ui/react-slot";
+import {
+  NavigationMenu,
+  NavigationMenuList,
+  NavigationMenuItem,
+  navigationMenuTriggerStyle,
+} from "@/components/ui/navigation-menu"
 
 const SparklesIcon = ({ size = 18 }) => {
   return (
@@ -29,11 +35,29 @@ const SparklesIcon = ({ size = 18 }) => {
   );
 };
 
+const SettingsIcon = ({ size = 20 }) => {
+  return (
+    <svg
+      height={size}
+      width={size}
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="2"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    >
+      <circle cx="12" cy="12" r="3"></circle>
+      <path d="M12 1v6m0 6v6M4.22 4.22l4.24 4.24m5.08 5.08l4.24 4.24M1 12h6m6 0h6M4.22 19.78l4.24-4.24m5.08-5.08l4.24-4.24"></path>
+    </svg>
+  );
+};
+
 export const Header = () => {
   return (
     <header className="mb-4">
-      <div className="mx-auto flex justify-between items-center">
-        <div>
+      <div className="mx-auto flex justify-between items-center text-black dark:text-white">
+        <div className="flex items-center gap-8">
           <h1 className="text-xl flex sm:text-2xl sm:font-bold antialiased font-semibold">
             <Link
               href="https://sdk.vercel.ai"
@@ -45,8 +69,26 @@ export const Header = () => {
             </Link>
             Image Generator
           </h1>
+          <NavigationMenu>
+            <NavigationMenuList>
+              <NavigationMenuItem>
+                <Slot>
+                  <Link href="/" className={navigationMenuTriggerStyle()}>
+                    Home
+                  </Link>
+                </Slot>
+              </NavigationMenuItem>
+              <NavigationMenuItem>
+                <Slot>
+                  <Link href="/settings" className={navigationMenuTriggerStyle()}>
+                    Settings
+                  </Link>
+                </Slot>
+              </NavigationMenuItem>
+            </NavigationMenuList>
+          </NavigationMenu>
         </div>
-        <div className="ml-4">
+        <div className="ml-4 flex gap-2 items-center">
           <ModeToggle />
         </div>
       </div>

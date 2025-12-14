@@ -11,39 +11,39 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
-        background: "#ffffff",
-        foreground: "#000000",
+        background: "light-dark(#ffffff, #0a0a0a)",
+        foreground: "light-dark(#000000, #ffffff)",
         card: {
-          DEFAULT: "#f8f8f8",
-          foreground: "#000000",
+          DEFAULT: "light-dark(#f8f8f8, #1a1a1a)",
+          foreground: "light-dark(#000000, #ffffff)",
         },
         popover: {
-          DEFAULT: "#ffffff",
-          foreground: "#000000",
+          DEFAULT: "light-dark(#ffffff, #1a1a1a)",
+          foreground: "light-dark(#000000, #ffffff)",
         },
         primary: {
-          DEFAULT: "#000000",
-          foreground: "#ffffff",
+          DEFAULT: "light-dark(#000000, #ffffff)",
+          foreground: "light-dark(#ffffff, #000000)",
         },
         secondary: {
-          DEFAULT: "#e5e5e5",
-          foreground: "#000000",
+          DEFAULT: "light-dark(#e5e5e5, #333333)",
+          foreground: "light-dark(#000000, #ffffff)",
         },
         muted: {
-          DEFAULT: "#f5f5f5",
-          foreground: "#666666",
+          DEFAULT: "light-dark(#f5f5f5, #333333)",
+          foreground: "light-dark(#666666, #999999)",
         },
         accent: {
-          DEFAULT: "#000000",
-          foreground: "#ffffff",
+          DEFAULT: "light-dark(#000000, #ffffff)",
+          foreground: "light-dark(#ffffff, #000000)",
         },
         destructive: {
-          DEFAULT: "#dc2626",
+          DEFAULT: "light-dark(#dc2626, #ef4444)",
           foreground: "#ffffff",
         },
-        border: "#e5e5e5",
-        input: "#f0f0f0",
-        ring: "#000000",
+        border: "light-dark(#e5e5e5, #333333)",
+        input: "light-dark(#f0f0f0, #1a1a1a)",
+        ring: "light-dark(#000000, #ffffff)",
         chart: {
           "1": "#3b82f6",
           "2": "#8b5cf6",
