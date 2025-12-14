@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { Switch } from "./ui/switch";
+import { ModeToggle } from "./ModeToggle";
 import { useTheme } from "next-themes";
 
 const SparklesIcon = ({ size = 18 }) => {
@@ -30,8 +30,6 @@ const SparklesIcon = ({ size = 18 }) => {
 };
 
 export const Header = () => {
-  const { theme, setTheme } = useTheme();
-  const isDark = theme === "dark";
   return (
     <header className="mb-4">
       <div className="mx-auto flex justify-between items-center">
@@ -49,11 +47,7 @@ export const Header = () => {
           </h1>
         </div>
         <div className="ml-4">
-          <Switch
-            aria-label="Toggle dark mode"
-            checked={isDark}
-            onCheckedChange={(checked: boolean) => setTheme(checked ? "dark" : "light")}
-          />
+          <ModeToggle />
         </div>
       </div>
     </header>
