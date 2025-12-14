@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
-import { ImageModel, experimental_generateImage as generateImage } from "ai";
+import { experimental_generateImage as generateImage } from "ai";
 import { openai } from "@ai-sdk/openai";
 import { fireworks } from "@ai-sdk/fireworks";
 import { replicate } from "@ai-sdk/replicate";
@@ -17,7 +17,8 @@ const DEFAULT_IMAGE_SIZE = "1024x1024";
 const DEFAULT_ASPECT_RATIO = "1:1";
 
 interface ProviderConfig {
-  createImageModel: (modelId: string) => ImageModel;
+  // Allow both V1 and V2 image model factories without strict typing friction.
+  createImageModel: (modelId: string) => unknown;
   dimensionFormat: "size" | "aspectRatio";
 }
 
@@ -67,7 +68,8 @@ export async function POST(req: NextRequest) {
     const config = providerConfig[provider];
     const startstamp = performance.now();
     const generatePromise = generateImage({
-      model: config.createImageModel(modelId),
+      // Cast to any to allow both ImageModel V1 and V2 providers.
+      model: config.createImageModel(modelId) as any,
       prompt,
       ...(config.dimensionFormat === "size"
         ? { size: DEFAULT_IMAGE_SIZE }

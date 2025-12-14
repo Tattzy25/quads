@@ -1,6 +1,7 @@
 import { Card, CardContent } from "@/components/ui/card";
 import { imageHelpers } from "@/lib/image-helpers";
 import {
+  FalIcon,
   FireworksIcon,
   OpenAIIcon,
   ReplicateIcon,
@@ -42,6 +43,7 @@ const PROVIDER_ICONS = {
   replicate: ReplicateIcon,
   vertex: VertexIcon,
   fireworks: FireworksIcon,
+  fal: FalIcon,
 } as const;
 
 const PROVIDER_LINKS = {
@@ -49,6 +51,7 @@ const PROVIDER_LINKS = {
   replicate: "replicate",
   vertex: "google-vertex",
   fireworks: "fireworks",
+  fal: "fal",
 } as const;
 
 export function ModelSelect({
