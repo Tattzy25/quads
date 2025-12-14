@@ -3,7 +3,7 @@ import { ImageModel, experimental_generateImage as generateImage } from "ai";
 import { openai } from "@ai-sdk/openai";
 import { fireworks } from "@ai-sdk/fireworks";
 import { replicate } from "@ai-sdk/replicate";
-import { vertex } from "@ai-sdk/google-vertex/edge";
+import { fal } from "@ai-sdk/fal";
 import { ProviderKey } from "@/lib/provider-config";
 import { GenerateImageRequest } from "@/lib/api-types";
 
@@ -34,8 +34,8 @@ const providerConfig: Record<ProviderKey, ProviderConfig> = {
     createImageModel: replicate.image,
     dimensionFormat: "size",
   },
-  vertex: {
-    createImageModel: vertex.image,
+  fal: {
+    createImageModel: fal.image,
     dimensionFormat: "aspectRatio",
   },
 };
@@ -75,8 +75,8 @@ export async function POST(req: NextRequest) {
       ...(provider !== "openai" && {
         seed: Math.floor(Math.random() * 1000000),
       }),
-      // Vertex AI only accepts a specified seed if watermark is disabled.
-      providerOptions: { vertex: { addWatermark: false } },
+      // FAL does not require watermark configuration for seeds.
+      providerOptions: {},
     }).then(({ image, warnings }) => {
       if (warnings?.length > 0) {
         console.warn(
